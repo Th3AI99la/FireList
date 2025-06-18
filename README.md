@@ -1,119 +1,119 @@
-# TaskFlow - A Next.js Task Management App
+# TaskFlow - Um aplicativo de gerenciamento de tarefas em Next.js
 
-TaskFlow is a modern web application built with Next.js and Firebase that allows users to manage their tasks efficiently. It features user authentication, real-time task updates with Firestore, and a clean, responsive interface.
+TaskFlow é um aplicativo web moderno construído com Next.js e Firebase que permite aos usuários gerenciar suas tarefas de forma eficiente. Ele possui autenticação de usuário, atualizações de tarefas em tempo real com Firestore e uma interface limpa e responsiva.
 
-## Core Features
+## Funcionalidades Principais
 
-- **Firebase Authentication**: Secure login and registration using email and password.
-- **Firestore Integration**: Tasks are stored and managed in Firestore, associated with authenticated users.
-- **CRUD Operations**: Users can add, list, update (status), and delete tasks.
-- **Real-time Updates**: Task list updates in real-time when changes occur.
-- **User Profile**: View user information and logout.
-- **Responsive Design**: Clean, card-based layout that works on various screen sizes.
-- **Modern UI**: Styled with Tailwind CSS and ShadCN UI components, featuring a custom color theme.
+-   **Autenticação Firebase**: Login e registro seguros usando e-mail e senha.
+-   **Integração com Firestore**: As tarefas são armazenadas e gerenciadas no Firestore, associadas a usuários autenticados.
+-   **Operações CRUD**: Os usuários podem adicionar, listar, atualizar (status) e excluir tarefas.
+-   **Atualizações em Tempo Real**: A lista de tarefas é atualizada em tempo real quando ocorrem alterações.
+-   **Perfil do Usuário**: Visualize informações do usuário e faça logout.
+-   **Design Responsivo**: Layout limpo, baseado em cartões, que funciona em vários tamanhos de tela.
+-   **UI Moderna**: Estilizado com Tailwind CSS e componentes ShadCN UI, apresentando um tema de cores personalizado.
 
-## Tech Stack
+## Pilha de Tecnologia
 
-- Next.js (App Router, Server Components, TypeScript)
-- Firebase (Authentication, Firestore SDK v9+)
-- Tailwind CSS
-- ShadCN UI
-- React Hook Form & Zod (for form validation)
-- Lucide React (for icons)
-- date-fns (for date formatting)
+-   Next.js (App Router, Server Components, TypeScript)
+-   Firebase (Authentication, Firestore SDK v9+)
+-   Tailwind CSS
+-   ShadCN UI
+-   React Hook Form & Zod (para validação de formulários)
+-   Lucide React (para ícones)
+-   date-fns (para formatação de datas)
 
-## Prerequisites
+## Pré-requisitos
 
-- Node.js (v18 or later recommended)
-- npm or yarn
+-   Node.js (v18 ou posterior recomendado)
+-   npm ou yarn
 
-## Firebase Setup
+## Configuração do Firebase
 
-Before running the application, you need to set up a Firebase project:
+Antes de executar o aplicativo, você precisa configurar um projeto Firebase:
 
-1.  **Create a Firebase Project**:
-    *   Go to the [Firebase Console](https://console.firebase.google.com/).
-    *   Click on "Add project" and follow the instructions.
+1.  **Criar um Projeto Firebase**:
+    * Vá para o [Firebase Console](https://console.firebase.google.com/).
+    * Clique em "Adicionar projeto" e siga as instruções.
 
-2.  **Add a Web App to Your Project**:
-    *   In your Firebase project dashboard, click the Web icon (`</>`) to add a new web app.
-    *   Register your app (you can name it "TaskFlow" or similar).
-    *   Firebase will provide you with a `firebaseConfig` object. Copy these values.
+2.  **Adicionar um aplicativo da web ao seu projeto**:
+    * No painel do seu projeto Firebase, clique no ícone da Web (`</>`) para adicionar um novo aplicativo da web.
+    * Registre seu aplicativo (você pode nomeá-lo "TaskFlow" ou similar).
+    * O Firebase fornecerá um objeto `firebaseConfig`. Copie esses valores.
 
-3.  **Enable Firebase Authentication**:
-    *   In the Firebase console, go to "Authentication" (under Build).
-    *   Click "Get started".
-    *   Under "Sign-in method", enable "Email/Password".
+3.  **Ativar a Autenticação do Firebase**:
+    * No console do Firebase, vá para "Authentication" (em Build).
+    * Clique em "Começar".
+    * Em "Método de login", ative "E-mail/Senha".
 
-4.  **Set up Firestore Database**:
-    *   In the Firebase console, go to "Firestore Database" (under Build).
-    *   Click "Create database".
-    *   Start in **test mode** for easy setup (you can configure security rules later for production).
-    *   Choose a Firestore location closest to your users.
+4.  **Configurar o Banco de Dados Firestore**:
+    * No console do Firebase, vá para "Firestore Database" (em Build).
+    * Clique em "Criar banco de dados".
+    * Comece no **modo de teste** para facilitar a configuração (você pode configurar as regras de segurança mais tarde para produção).
+    * Escolha um local do Firestore mais próximo dos seus usuários.
 
-5.  **Configure Environment Variables**:
-    *   In the root directory of this project, create a file named `.env.local`.
-    *   Add your Firebase configuration keys to this file, like so:
+5.  **Configurar Variáveis de Ambiente**:
+    * No diretório raiz deste projeto, crie um arquivo chamado `.env.local`.
+    * Adicione suas chaves de configuração do Firebase a este arquivo, assim:
 
     ```env
-    NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-    NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+    NEXT_PUBLIC_FIREBASE_API_KEY=sua_chave_api
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=seu_dominio_auth
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=seu_id_projeto
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=seu_bucket_armazenamento
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=seu_id_remetente_mensagens
+    NEXT_PUBLIC_FIREBASE_APP_ID=seu_id_app
     ```
 
-    Replace `your_api_key`, `your_auth_domain`, etc., with the actual values from your Firebase project's web app configuration.
+    Substitua `sua_chave_api`, `seu_dominio_auth`, etc., pelos valores reais da configuração do aplicativo da web do seu projeto Firebase.
 
-## Getting Started
+## Começando
 
-1.  **Clone the repository (if applicable) or ensure you have the project files.**
+1.  **Clone o repositório (se aplicável) ou certifique-se de ter os arquivos do projeto.**
 
-2.  **Install dependencies**:
-    Open your terminal, navigate to the project directory, and run:
+2.  **Instale as dependências**:
+    Abra seu terminal, navegue até o diretório do projeto e execute:
     ```bash
     npm install
-    # or
+    # ou
     # yarn install
     ```
 
-3.  **Run the development server**:
+3.  **Execute o servidor de desenvolvimento**:
     ```bash
     npm run dev
-    # or
+    # ou
     # yarn dev
     ```
 
-    The application should now be running at [http://localhost:9002](http://localhost:9002) (or another port if 9002 is in use - check your terminal output).
+    O aplicativo agora deve estar em execução em [http://localhost:9002](http://localhost:9002) (ou outra porta se 9002 estiver em uso - verifique a saída do seu terminal).
 
-## Project Structure
+## Estrutura do Projeto
 
--   `src/app/`: Next.js App Router pages and layouts.
-    -   `(app)/`: Group for authenticated routes (dashboard, add task, profile).
-    -   `login/`: Login page.
-    -   `register/`: Registration page.
--   `src/components/`: Reusable React components.
-    -   `auth/`: Authentication-related components (login/register forms, AuthGuard).
-    -   `layout/`: Layout components like Navbar.
-    -   `tasks/`: Task-related components (task list, item, add form).
-    -   `ui/`: ShadCN UI components.
--   `src/context/`: React Context providers (e.g., `AuthContext`).
--   `src/firebase/`: Firebase configuration and service functions.
-    -   `config.ts`: Firebase app initialization.
-    -   `firestore.ts`: Firestore CRUD operations for tasks.
--   `src/hooks/`: Custom React hooks.
--   `src/lib/`: Utility functions and type definitions.
-    -   `types.ts`: TypeScript type definitions.
-    -   `utils.ts`: General utility functions.
+-   `src/app/`: Páginas e layouts do Next.js App Router.
+    -   `(app)/`: Grupo para rotas autenticadas (dashboard, adicionar tarefa, perfil).
+    -   `login/`: Página de login.
+    -   `register/`: Página de registro.
+-   `src/components/`: Componentes React reutilizáveis.
+    -   `auth/`: Componentes relacionados à autenticação (formulários de login/registro, AuthGuard).
+    -   `layout/`: Componentes de layout como Navbar.
+    -   `tasks/`: Componentes relacionados a tarefas (lista de tarefas, item, formulário de adição).
+    -   `ui/`: Componentes ShadCN UI.
+-   `src/context/`: Provedores de Contexto React (por exemplo, `AuthContext`).
+-   `src/firebase/`: Configuração do Firebase e funções de serviço.
+    -   `config.ts`: Inicialização do aplicativo Firebase.
+    -   `firestore.ts`: Operações CRUD do Firestore para tarefas.
+-   `src/hooks/`: Hooks React personalizados.
+-   `src/lib/`: Funções de utilidade e definições de tipo.
+    -   `types.ts`: Definições de tipo TypeScript.
+    -   `utils.ts`: Funções de utilidade gerais.
 
-## Building for Production
+## Construindo para Produção
 
-To build the application for production, run:
+Para construir o aplicativo para produção, execute:
 ```bash
 npm run build
-```
-Then, to start the production server:
-```bash
+
+
+Em seguida, para iniciar o servidor de produção:
+
 npm run start
-```
